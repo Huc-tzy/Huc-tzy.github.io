@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +55,7 @@
             <h2>关于我</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>我是一名广东工业大学的在读本科生，热爱创作和分享。</p>
+                    <p>我是一名广东工业大学的在读���科生，热爱创作和分享。</p>
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
     <!-- 博客部分 -->
     <section id="blog" class="blog">
         <div class="container">
-            <h2>博客文章</h2>
+            <h2>博客��章</h2>
             <div class="blog-grid">
                 <!-- 博客文章 1 -->
                 <article class="blog-card">
@@ -235,13 +235,18 @@
         updateThemeIcon(savedTheme);
         
         // 主题切换事件
-        themeToggle.addEventListener('click', () => {
+        themeToggle.addEventListener('click', function() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
+            // 更新主题
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            
+            // 更新图标
             updateThemeIcon(newTheme);
+            
+            console.log('Theme switched to:', newTheme); // 添加调试信息
         });
         
         // 更新主题图标
