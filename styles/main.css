@@ -129,8 +129,13 @@ body {
         height: 200px;
     }
 
-    .nav-links {
+    .nav-links a {
         display: none;
+    }
+
+    .nav-links .theme-toggle {
+        display: flex;
+        margin-left: 1rem;
     }
 } 
 
