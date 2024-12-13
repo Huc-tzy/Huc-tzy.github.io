@@ -3,11 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 /* 导航栏样式 */
@@ -19,7 +22,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: var(--bg-secondary);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     z-index: 1000;
 }
@@ -27,19 +30,19 @@ body {
 .nav-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .nav-links a {
     margin-left: 2rem;
     text-decoration: none;
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ff3333;
+    color: var(--accent-color);
 }
 
 /* 首页英雄区域样式 */
@@ -48,8 +51,8 @@ body {
     display: flex;
     align-items: center;
     padding: 0 5%;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
 }
 
 .hero-content {
@@ -68,23 +71,23 @@ body {
 .hero-text h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .highlight {
-    color: #ff3333;
+    color: var(--accent-color);
 }
 
 .hero-text p {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: #cccccc;
+    color: var(--text-secondary);
 }
 
 .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #ff3333;
+    background-color: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -107,7 +110,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
-    border: 3px solid #ff3333;
+    border: 3px solid var(--accent-color);
 }
 
 /* 响应式设计 */
@@ -133,7 +136,7 @@ body {
 
 /* 项目展示区域样式 */
 .projects {
-    background-color: #1a1a1a;
+    background-color: var(--bg-primary);
     padding: 5rem 0;
     color: white;
 }
@@ -148,7 +151,7 @@ body {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .projects-grid {
@@ -158,11 +161,11 @@ body {
 }
 
 .project-card {
-    background: #2d2d2d;
+    background: var(--bg-secondary);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    border: 1px solid #333;
+    border: 1px solid var(--bg-secondary);
 }
 
 .project-card:hover {
@@ -187,13 +190,13 @@ body {
 }
 
 .project-content h3 {
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 .project-content p {
-    color: #cccccc;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
     font-size: 0.9rem;
     line-height: 1.6;
@@ -206,7 +209,7 @@ body {
 .project-tags span {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background-color: #ff3333;
+    background-color: var(--accent-color);
     color: white;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -318,7 +321,7 @@ body {
 
 /* 联系我部分样式 */
 .contact {
-    background-color: #1a1a1a;
+    background-color: var(--bg-primary);
     padding: 5rem 0;
     color: white;
 }
@@ -327,7 +330,7 @@ body {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .contact-content {
@@ -340,7 +343,7 @@ body {
 .contact-item {
     text-align: center;
     padding: 2rem;
-    background: #2d2d2d;
+    background: var(--bg-secondary);
     border-radius: 10px;
     min-width: 250px;
     transition: transform 0.3s ease;
@@ -353,7 +356,7 @@ body {
 
 .contact-item i {
     font-size: 2.5rem;
-    color: #ff3333;
+    color: var(--accent-color);
     margin-bottom: 1rem;
 }
 
@@ -375,7 +378,7 @@ body {
 
 /* 关于我部分样式 */
 .about {
-    background-color: #1a1a1a;
+    background-color: var(--bg-primary);
     padding: 5rem 0;
     color: white;
 }
@@ -384,7 +387,7 @@ body {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .about-content {
@@ -396,12 +399,12 @@ body {
 .about-text p {
     font-size: 1.2rem;
     line-height: 1.8;
-    color: #cccccc;
+    color: var(--text-secondary);
 } 
 
 /* 博客部分样式 */
 .blog {
-    background-color: #1a1a1a;
+    background-color: var(--bg-primary);
     padding: 5rem 0;
     color: white;
 }
@@ -413,7 +416,7 @@ body {
 }
 
 .blog-card {
-    background: #2d2d2d;
+    background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 10px;
     transition: transform 0.3s ease;
@@ -426,7 +429,7 @@ body {
 
 .blog-meta {
     margin-bottom: 1rem;
-    color: #cccccc;
+    color: var(--text-secondary);
 }
 
 .blog-meta span {
@@ -435,13 +438,13 @@ body {
 }
 
 .blog-content h3 {
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 .blog-content p {
-    color: #cccccc;
+    color: var(--text-secondary);
     line-height: 1.6;
 } 
 
@@ -452,7 +455,7 @@ html {
 
 /* 为各个部分添加渐变背景，增加层次感 */
 .hero {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 /* 添加加载动画 */
@@ -483,12 +486,12 @@ html {
     transition: all 0.3s ease;
     z-index: 1000;
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
 }
 
 .back-to-top.show {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
 }
 
 .back-to-top:hover {
@@ -503,7 +506,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #1a1a1a;
+    background: var(--bg-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -515,8 +518,8 @@ html {
 .spinner {
     width: 50px;
     height: 50px;
-    border: 3px solid #cccccc;
-    border-top: 3px solid #ff3333;
+    border: 3px solid var(--text-secondary);
+    border-top: 3px solid var(--accent-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -524,4 +527,81 @@ html {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+} 
+
+/* 主题变量 */
+:root {
+    /* 暗色主题（默认） */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent-color: #ff3333;
+}
+
+/* 亮色主题 */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent-color: #ff3333;
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
+}
+
+/* 更新现有样式，使用变量 */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.navbar {
+    background-color: var(--bg-secondary);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.blog-card, .project-card {
+    background: var(--bg-secondary);
+}
+
+.blog-content p, .project-content p {
+    color: var(--text-secondary);
+} 
+
+/* 添加主题切换过渡效果 */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 某些元素不需要过渡效果 */
+.loading-spinner, .spinner {
+    transition: none;
+} 
+
+/* 亮色主题下的阴影调整 */
+[data-theme="light"] .navbar {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .blog-card:hover,
+[data-theme="light"] .contact-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 } 
