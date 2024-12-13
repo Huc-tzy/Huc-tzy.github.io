@@ -1,4 +1,4 @@
-/* 主题变量 - 添加在文件最开始 */
+/* 主题变量 */
 :root {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
@@ -114,7 +114,7 @@ body {
     display: inline-block;
     padding: 1rem 2rem;
     background-color: var(--accent-color);
-    color: white;
+    color: var(--bg-primary);
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -122,7 +122,8 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #cc0000;
+    background-color: var(--accent-color);
+    opacity: 0.9;
 }
 
 .hero-image {
@@ -302,21 +303,23 @@ body {
     transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
-    background: rgba(255, 51, 51, 0.8);
+    background: var(--accent-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    opacity: 0.8;
 }
 
 .play-button i {
-    color: white;
+    color: var(--bg-primary);
     font-size: 24px;
 }
 
 .video-container:hover .play-button {
-    background: #ff3333;
+    background: var(--accent-color);
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -362,7 +365,7 @@ body {
 .contact {
     background-color: var(--bg-primary);
     padding: 5rem 0;
-    color: white;
+    color: var(--text-primary);
 }
 
 .contact h2 {
@@ -406,20 +409,20 @@ body {
 
 .contact-item a,
 .contact-item p {
-    color: #cccccc;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
-    color: #ff3333;
+    color: var(--accent-color);
 } 
 
 /* 关于我部分样式 */
 .about {
     background-color: var(--bg-primary);
     padding: 5rem 0;
-    color: white;
+    color: var(--text-primary);
 }
 
 .about h2 {
@@ -445,7 +448,7 @@ body {
 .blog {
     background-color: var(--bg-primary);
     padding: 5rem 0;
-    color: white;
+    color: var(--text-primary);
 }
 
 .blog-grid {
@@ -512,8 +515,8 @@ html {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #ff3333;
-    color: white;
+    background: var(--accent-color);
+    color: var(--bg-primary);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -534,7 +537,8 @@ html {
 }
 
 .back-to-top:hover {
-    background: #cc0000;
+    background: var(--accent-color);
+    opacity: 0.9;
     transform: translateY(-3px);
 }
 
@@ -566,52 +570,6 @@ html {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-} 
-
-/* 主题变量 */
-:root {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --accent-color: #ff3333;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --modal-bg: rgba(0, 0, 0, 0.9);
-}
-
-[data-theme="light"] {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --accent-color: #ff3333;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --modal-bg: rgba(0, 0, 0, 0.9);
-}
-
-/* 使用媒体查询自动切换主题 */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: #1a1a1a;
-        --bg-secondary: #2d2d2d;
-        --text-primary: #ffffff;
-        --text-secondary: #cccccc;
-        --accent-color: #ff3333;
-        --text-color: #fff;
-        --hover-color: rgba(255, 255, 255, 0.1);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-primary: #ffffff;
-        --bg-secondary: #f5f5f5;
-        --text-primary: #333333;
-        --text-secondary: #666666;
-        --accent-color: #ff3333;
-        --text-color: #333;
-        --hover-color: rgba(0, 0, 0, 0.1);
-    }
 } 
 
 /* 主题切换按钮样式 */
