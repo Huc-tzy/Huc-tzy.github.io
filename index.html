@@ -55,7 +55,7 @@
             <h2>关于我</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>我是一名广东工业大学的在读���科生，热爱创作和分享。</p>
+                    <p>我是一名广东工业大学的在读本科生，热爱创作和分享。</p>
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
     <!-- 博客部分 -->
     <section id="blog" class="blog">
         <div class="container">
-            <h2>博客��章</h2>
+            <h2>博客文章</h2>
             <div class="blog-grid">
                 <!-- 博客文章 1 -->
                 <article class="blog-card">
@@ -229,7 +229,7 @@
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         
-        // 检查本地存储中的主题设置
+        // 检查本地存储中的主题置
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeIcon(savedTheme);
@@ -251,7 +251,7 @@
         
         // 更新主题图标
         function updateThemeIcon(theme) {
-            themeIcon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
     });
     </script>
