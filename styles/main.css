@@ -129,15 +129,22 @@ body {
         height: 200px;
     }
 
-    .nav-links a {
-        display: none;
+    /* 修改导航栏显示 */
+    .nav-links {
+        display: flex;  /* 改为 flex 布局 */
+        align-items: center;
+        justify-content: flex-end;  /* 靠右对齐 */
     }
 
-    .nav-links .theme-toggle {
-        display: flex;
-        margin-left: 1rem;
+    .nav-links a {
+        display: none;  /* 只隐藏导航链接 */
     }
-} 
+
+    .theme-toggle {
+        display: flex;  /* 确保按钮显示 */
+        margin: 0 1rem;  /* 调整间距 */
+    }
+}
 
 /* 项目展示区域样式 */
 .projects {
