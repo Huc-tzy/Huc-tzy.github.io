@@ -33,6 +33,11 @@ body {
     color: var(--text-primary);
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
 .nav-links a {
     margin-left: 2rem;
     text-decoration: none;
@@ -131,18 +136,17 @@ body {
 
     /* 修改导航栏显示 */
     .nav-links {
-        display: flex;  /* 改为 flex 布局 */
+        display: flex;
         align-items: center;
-        justify-content: flex-end;  /* 靠右对齐 */
     }
 
     .nav-links a {
-        display: none;  /* 只隐藏导航链接 */
+        display: none;
     }
 
     .theme-toggle {
-        display: flex;  /* 确保按钮显示 */
-        margin: 0 1rem;  /* 调整间距 */
+        margin: 0 1rem;
+        display: flex !important;
     }
 }
 
@@ -583,6 +587,11 @@ html {
 
 /* 主题切换按钮样式 */
 .theme-toggle {
+    position: relative;
+    z-index: 1001;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background: none;
     border: 2px solid var(--text-primary);
     color: var(--text-primary);
@@ -590,15 +599,13 @@ html {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    margin-left: 3.5rem;
+    margin-left: 2rem;
     margin-right: 1.5rem;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .theme-toggle::before {
