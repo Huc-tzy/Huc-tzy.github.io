@@ -123,7 +123,7 @@
                             <span class="category">网站更新</span>
                         </div>
                         <h3>个人网站上线啦！</h3>
-                        <p>今天，我终于完成了我的个人网站的制作。这个网站将会是我分享生活、创作和想法的地方。</p>
+                        <p>今天，我终于完��了我的个人网站的制作。这个网站将会是我分享生活、创作和想法的地方。</p>
                     </div>
                 </article>
             </div>
@@ -161,13 +161,21 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // 页面加载动画
         const loadingSpinner = document.querySelector('.loading-spinner');
         
+        // 确保加载动画一开始就显示
+        loadingSpinner.style.display = 'flex';
+        loadingSpinner.style.opacity = '1';
+        
+        // 当页面完全加载后再隐藏
         window.addEventListener('load', () => {
-            loadingSpinner.style.opacity = '0';
             setTimeout(() => {
-                loadingSpinner.style.display = 'none';
-            }, 500);
+                loadingSpinner.style.opacity = '0';
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                }, 500);
+            }, 1000);
         });
 
         const modal = document.querySelector(".video-modal");

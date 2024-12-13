@@ -477,7 +477,7 @@ html {
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
