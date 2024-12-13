@@ -35,7 +35,7 @@
                 <a href="#about" class="cta-button">了解更多</a>
             </div>
             <div class="hero-image">
-                <img src="./assets/profile.jpg" alt="个人照片">
+                <img data-src="./assets/profile.jpg" src="./assets/profile.jpg" alt="个人照片">
             </div>
         </div>
     </section>
@@ -161,6 +161,15 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const loadingSpinner = document.querySelector('.loading-spinner');
+        
+        window.addEventListener('load', () => {
+            loadingSpinner.style.opacity = '0';
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+            }, 500);
+        });
+
         const modal = document.querySelector(".video-modal");
         const modalVideo = modal.querySelector("video");
         const closeBtn = modal.querySelector(".close-modal");
@@ -195,25 +204,14 @@
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                backToTop.style.display = 'flex';
+                backToTop.classList.add('show');
             } else {
-                backToTop.style.display = 'none';
+                backToTop.classList.remove('show');
             }
         });
         
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 页面加载动画
-        const loadingSpinner = document.querySelector('.loading-spinner');
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingSpinner.style.opacity = '0';
-                setTimeout(() => {
-                    loadingSpinner.style.display = 'none';
-                }, 500);
-            }, 1000);
         });
 
         // 图片懒加载

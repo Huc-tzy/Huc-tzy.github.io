@@ -482,6 +482,13 @@ html {
     justify-content: center;
     transition: all 0.3s ease;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 .back-to-top:hover {
@@ -501,6 +508,8 @@ html {
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 .spinner {
