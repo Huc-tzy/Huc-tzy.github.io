@@ -12,6 +12,11 @@
     <meta property="og:title" content="Ttzy的个人网站">
     <meta property="og:description" content="创意视频制作者的个人空间">
     <meta property="og:image" content="./assets/profile.jpg">
+    <link rel="preload" href="./assets/profile.jpg" as="image">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -23,6 +28,10 @@
             <a href="#projects">项目作品</a>
             <a href="#blog">博客</a>
             <a href="#contact">联系我</a>
+            <!-- 修改主题切换按钮的位置和结构 -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -60,7 +69,7 @@
                 <!-- 视频项目 1 -->
                 <div class="project-card">
                     <div class="project-image video-container">
-                        <video poster="./assets/video1-thumbnail.jpg" class="video-player">
+                        <video poster="./assets/video1-thumbnail.jpg" class="video-player" preload="none">
                             <source src="./assets/video1.mp4" type="video/mp4">
                         </video>
                         <div class="play-button play-video">
@@ -72,7 +81,7 @@
                         <p>这是一个人像特写</p>
                         <div class="project-tags">
                             <span>剪辑</span>
-                            <span>创意</span>
+                            <span>创作</span>
                         </div>
                     </div>
                 </div>
@@ -80,7 +89,7 @@
                 <!-- 视频项目 2 -->
                 <div class="project-card">
                     <div class="project-image video-container">
-                        <video poster="./assets/video2-thumbnail.jpg" class="video-player">
+                        <video poster="./assets/video2-thumbnail.jpg" class="video-player" preload="none">
                             <source src="./assets/video2.mp4" type="video/mp4">
                         </video>
                         <div class="play-button play-video">
@@ -123,7 +132,7 @@
                             <span class="category">网站更新</span>
                         </div>
                         <h3>个人网站上线啦！</h3>
-                        <p>今天，我终于完成了我的个人网站的制作。这个网站将会是我分享生活、创作和想法的地方。</p>
+                        <p>今天，终于完成了我的个人网站的制作。这个网站将会是我分享生活、创作和想法的地方。</p>
                     </div>
                 </article>
             </div>
@@ -161,119 +170,74 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // 页面加载动画
+        // 添加页面加载完成后隐藏加载动画
         const loadingSpinner = document.querySelector('.loading-spinner');
-        
-        // 确保加载动画一开始就显示
-        loadingSpinner.style.display = 'flex';
-        loadingSpinner.style.opacity = '1';
-        
-        // 当页面完全加载后再隐藏
-        window.addEventListener('load', () => {
+        if (loadingSpinner) {
+            loadingSpinner.style.opacity = '0';
             setTimeout(() => {
-                loadingSpinner.style.opacity = '0';
-                setTimeout(() => {
-                    loadingSpinner.style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
-        const modal = document.querySelector(".video-modal");
-        const modalVideo = modal.querySelector("video");
-        const closeBtn = modal.querySelector(".close-modal");
-        const playButtons = document.querySelectorAll(".play-video");
+                loadingSpinner.style.display = 'none';
+            }, 500);
+        }
         
-        playButtons.forEach(button => {
-            button.addEventListener("click", function(e) {
-                e.preventDefault();
-                const videoSrc = this.closest(".project-card").querySelector("video source").src;
-                modalVideo.src = videoSrc;
-                modal.style.display = "block";
+        // 添加视频播放相关功能
+        const videoContainers = document.querySelectorAll('.video-container');
+        const videoModal = document.querySelector('.video-modal');
+        const modalVideo = videoModal.querySelector('video');
+        
+        videoContainers.forEach(container => {
+            container.addEventListener('click', function() {
+                const video = this.querySelector('video');
+                modalVideo.src = video.querySelector('source').src;
+                videoModal.style.display = 'block';
                 modalVideo.play();
             });
         });
         
-        closeBtn.addEventListener("click", function() {
-            modal.style.display = "none";
-            modalVideo.pause();
-            modalVideo.src = "";
-        });
+        // 使用防抖优化滚动事件
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
         
-        modal.addEventListener("click", function(e) {
-            if (e.target === modal) {
-                modal.style.display = "none";
-                modalVideo.pause();
-                modalVideo.src = "";
-            }
-        });
-
-        // 返回顶部按钮功能
-        const backToTop = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
+        // 优化滚动监听
+        const handleScroll = debounce(() => {
             if (window.pageYOffset > 100) {
                 backToTop.classList.add('show');
             } else {
                 backToTop.classList.remove('show');
             }
+        }, 100);
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // 优化视频加载
+        const videoPlayers = document.querySelectorAll('.video-player');
+        videoPlayers.forEach(video => {
+            video.addEventListener('loadstart', function() {
+                this.volume = 0.5; // 设置默认音量
+            });
         });
         
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // 图片懒加载
-        const images = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-
-        // 主题切换功能
+        // 优化主题切换
         const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        // 检查系统主题偏好
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // 优先使用本地存储的主题设置，如果没有则使用系统主题
-        const savedTheme = localStorage.getItem('theme');
-        const currentTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        updateThemeIcon(currentTheme);
-        
-        // 监听系统主题变化
-        prefersDarkScheme.addListener((e) => {
-            if (!localStorage.getItem('theme')) {
-                const newTheme = e.matches ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                updateThemeIcon(newTheme);
-            }
-        });
-        
-        // 手动切换主题
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-        
-        function updateThemeIcon(theme) {
-            themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                requestAnimationFrame(() => {
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon(newTheme);
+                });
+            });
         }
     });
     </script>
