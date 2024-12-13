@@ -6,6 +6,12 @@
     <title>个人网站</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Ttzy的个人网站 - 创意视频制作者">
+    <meta name="keywords" content="Ttzy, 视频制作, 创意, 博客">
+    <meta name="author" content="Ttzy">
+    <meta property="og:title" content="Ttzy的个人网站">
+    <meta property="og:description" content="创意视频制作者的个人空间">
+    <meta property="og:image" content="./assets/profile.jpg">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -143,6 +149,16 @@
         </div>
     </section>
 
+    <!-- 添加返回顶部按钮 -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 添加加载动画 -->
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const modal = document.querySelector(".video-modal");
@@ -173,6 +189,47 @@
                 modalVideo.src = "";
             }
         });
+
+        // 返回顶部按钮功能
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 页面加载动画
+        const loadingSpinner = document.querySelector('.loading-spinner');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingSpinner.style.opacity = '0';
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // 图片懒加载
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
     });
     </script>
 </body>
