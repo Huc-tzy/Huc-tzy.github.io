@@ -23,9 +23,6 @@
             <a href="#projects">项目作品</a>
             <a href="#blog">博客</a>
             <a href="#contact">联系我</a>
-            <button id="theme-toggle" class="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </nav>
 
@@ -247,11 +244,25 @@
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         
-        // 检查本地存储中的主题设置
-        const currentTheme = localStorage.getItem('theme') || 'dark';
+        // 检查系统主题偏好
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // 优先使用本地存储的主题设置，如果没有则使用系统主题
+        const savedTheme = localStorage.getItem('theme');
+        const currentTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
         
+        // 监听系统主题变化
+        prefersDarkScheme.addListener((e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateThemeIcon(newTheme);
+            }
+        });
+        
+        // 手动切换主题
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
